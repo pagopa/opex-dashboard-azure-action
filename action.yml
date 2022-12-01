@@ -3,7 +3,7 @@ description: 'Used to create Dashboard'
 inputs:
   command:
     description: 'command'
-    required: true
+    required: false
 
 runs:
   using: 'docker'
