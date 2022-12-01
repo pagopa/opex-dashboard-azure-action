@@ -1,0 +1,23 @@
+name: 'Opex Dashboard Tool'
+description: 'Used to create Dashboard'
+inputs:
+  template_name:
+    description: 'template name'
+    required: true
+  config_file:
+    description: 'config-file'
+    required: true
+  package:
+    description: 'package'
+    required: false
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.template_name }}
+    - ${{ inputs.config_file }}
+    - ${{ inputs.package }}
+branding:
+  icon: 'git-commit'
+  color: 'green'
