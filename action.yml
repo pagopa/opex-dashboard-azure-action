@@ -1,15 +1,21 @@
-name: 'Opex Dashboard Tool'
-description: 'Used to create Dashboard'
+name: 'OpEx Dashboard'
+description: 'Automate OpEx Dashboard generation process'
+
 inputs:
-  command:
-    description: 'command'
-    required: false
+  template:
+    description: 'Name of the template'
+    required: true
+  config:
+    description: 'A yaml file with all params to create the template'
+    required: true
 
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.command }}
+    - ${{ inputs.template }}
+    - ${{ inputs.config }}
+
 branding:
   icon: 'git-commit'
   color: 'green'
