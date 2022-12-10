@@ -8,7 +8,7 @@ function generate()
   opex_dashboard generate \
     -t $template \
     -c $config \
-    --package /
+    --package
 }
 
 function main()

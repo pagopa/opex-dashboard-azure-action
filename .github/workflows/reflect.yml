@@ -19,9 +19,9 @@ jobs:
       - name: Current action
         uses: ./
         with:
-          template: azure-dashboard-raw
+          template: azure-dashboard
           config: ./assets/examples/config.yaml
       - name: test
         run: |
           pwd
-          ls
+          ls -R
