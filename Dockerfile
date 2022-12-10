@@ -4,10 +4,10 @@ ENV PATH="/root/.local/bin:${PATH}"
 
 RUN apk add --no-cache git build-base
 
-# RUN pip install --user 'opex_dashboard@git+https://github.com/pagopa/opex-dashboard'
+# RUN pip install 'opex_dashboard@git+https://github.com/pagopa/opex-dashboard'
 RUN \
-  pip install 'opex_dashboard@git+https://github.com/pagopa/opex-dashboard@abs-template-path' && \
-  pip cache purge
+  python -m pip install 'opex_dashboard @ git+https://github.com/pagopa/opex-dashboard@abs-template-path' && \
+  python -m pip cache purge
 
 COPY entrypoint.sh /bin/entrypoint.sh
 
