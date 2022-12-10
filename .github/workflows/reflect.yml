@@ -1,0 +1,27 @@
+name: Reflection
+
+on: push
+
+jobs:
+  reflect:
+    permissions:
+      contents: read
+    name: Reflect
+    runs-on: "ubuntu-22.04"
+    steps:
+      - name: Checkout
+        id: checkout
+        # from https://github.com/actions/checkout/commits/main
+        uses: actions/checkout@1f9a0c22da41e6ebfa534300ef656657ea2c6707
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Current action
+        uses: ./
+        with:
+          template: azure-dashboard-raw
+          config: ./assets/examples/config.yaml
+      - name: test
+        run: |
+          pwd
+          ls

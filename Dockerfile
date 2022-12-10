@@ -6,11 +6,8 @@ RUN apk add --no-cache git build-base
 
 # RUN pip install --user 'opex_dashboard@git+https://github.com/pagopa/opex-dashboard'
 RUN \
-  pip install --user 'opex_dashboard@git+https://github.com/pagopa/opex-dashboard@abs-template-path' && \
+  pip install 'opex_dashboard@git+https://github.com/pagopa/opex-dashboard@abs-template-path' && \
   pip cache purge
-
-# TEMP
-COPY config.yaml /config.yaml
 
 COPY entrypoint.sh /bin/entrypoint.sh
 
