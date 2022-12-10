@@ -1,6 +1,6 @@
 #!/bin/sh -l
 
-function generate()
+function main()
 {
   local template=$1
   local config=$2
@@ -9,11 +9,6 @@ function generate()
     -t $template \
     -c $config \
     --package
-}
-
-function main()
-{
-  generate "$@"
 }
 
 main "$@"
