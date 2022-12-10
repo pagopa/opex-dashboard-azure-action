@@ -25,14 +25,13 @@ jobs:
         uses: hashicorp/setup-terraform@v2
       - name: Apply
         run: |
-          cd azure-dashboard
-          sed -i "s/$/MySubscription/g"                 env/dev/backend.ini
-          sed -i "s/resource_group_name.*/& myrg/g"     env/dev/backend.tfvars
-          sed -i "s/storage_group_name.*/& mystorage/g" env/dev/backend.tfvars
-          sed -i "s/container_name.*/& mycontainer/g"   env/dev/backend.tfvars
-          sed -i "s/key.*/& mykey/g"                    env/dev/backend.tfvars
-          sed -i "s/prefix.*/& pagopa/g"                env/dev/terraform.tfvars
-          sed -i "s/env_short.*/& d/g"                  env/dev/terraform.tfvars
+          sed -i "s/$/MySubscription/g"                 azure-dashboard/env/dev/backend.ini
+          sed -i "s/resource_group_name.*/& myrg/g"     azure-dashboard/env/dev/backend.tfvars
+          sed -i "s/storage_group_name.*/& mystorage/g" azure-dashboard/env/dev/backend.tfvars
+          sed -i "s/container_name.*/& mycontainer/g"   azure-dashboard/env/dev/backend.tfvars
+          sed -i "s/key.*/& mykey/g"                    azure-dashboard/env/dev/backend.tfvars
+          sed -i "s/prefix.*/& pagopa/g"                azure-dashboard/env/dev/terraform.tfvars
+          sed -i "s/env_short.*/& d/g"                  azure-dashboard/env/dev/terraform.tfvars
           # ./terraform.sh init dev
           # ./terraform.sh apply dev -auto-approve
       - name: List all current files
