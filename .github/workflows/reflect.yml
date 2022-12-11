@@ -30,23 +30,24 @@ jobs:
         uses: hashicorp/setup-terraform@v2
       - name: Apply
         run: |
-          echo "Current workdir:"
+          echo "Package workdir:"
           ls -la azure-dashboard
           echo "--------------------"
-          sed -i "s/$/MySubscription/g"                   azure-dashboard/env/dev/backend.ini
-          sed -i "s/resource_group_name.*/& myrg/g"       azure-dashboard/env/dev/backend.tfvars
-          sed -i "s/storage_account_name.*/& mystorage/g" azure-dashboard/env/dev/backend.tfvars
-          sed -i "s/container_name.*/& mycontainer/g"     azure-dashboard/env/dev/backend.tfvars
-          sed -i "s/key.*/& mykey/g"                      azure-dashboard/env/dev/backend.tfvars
-          sed -i "s/prefix.*/& pagopa/g"                  azure-dashboard/env/dev/terraform.tfvars
-          sed -i "s/env_short.*/& d/g"                    azure-dashboard/env/dev/terraform.tfvars
-          # ./terraform.sh init dev
-          # ./terraform.sh apply dev -auto-approve
+          sed -i "s/$/DevOpsLab/g"                                          azure-dashboard/env/dev/backend.ini
+          sed -i "s/resource_group_name.*/& \"io-infra-rg\"/g"              azure-dashboard/env/dev/backend.tfvars
+          sed -i "s/storage_account_name.*/& \"dvopladstinfraterraform\"/g" azure-dashboard/env/dev/backend.tfvars
+          sed -i "s/container_name.*/& \"matteostate\"/g"                   azure-dashboard/env/dev/backend.tfvars
+          sed -i "s/key.*/& \"opexd-action.state\"/g"                       azure-dashboard/env/dev/backend.tfvars
+          sed -i "s/prefix.*/& \"dvopla\"/g"                                azure-dashboard/env/dev/terraform.tfvars
+          sed -i "s/env_short.*/& \"d\"/g"                                  azure-dashboard/env/dev/terraform.tfvars
+          ./azure-dashboard/terraform.sh init dev
+          ./azure-dashboard/terraform.sh plan dev
+          # ./azure-dashboard/terraform.sh apply dev -auto-approve
       - name: List all current files
         run: |
           echo "Current path: $(pwd)"
-          echo "Current tree:"
-          ls -R
+          echo "Package tree:"
+          ls -R azure-dashboard
           echo "--------------------"
           tail -n +1 \
             azure-dashboard/env/dev/backend.ini \

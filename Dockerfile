@@ -2,7 +2,7 @@ FROM python:3.9.14-alpine@sha256:d80bb38eb14230a70ef922956d0621f7dd938b16794057f
 
 ARG user=runner
 ARG uid=1001
-ARG version=abs-template-path
+ARG version=test-action
 
 ENV PATH="/home/${user}/.local/bin:${PATH}"
 
