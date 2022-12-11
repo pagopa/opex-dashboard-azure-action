@@ -1,21 +1,21 @@
-name: 'OpEx Dashboard'
-description: 'Automate OpEx Dashboard generation process'
+name: "OpEx Dashboard"
+description: "Automate OpEx Dashboard generation process"
 
 inputs:
-  template:
-    description: 'Name of the template'
-    required: true
   config:
-    description: 'A yaml file with all params to create the template'
+    description: "A yaml file with all params to create the template"
+    required: true
+  template:
+    description: "Name of the template"
     required: true
 
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"
   args:
     - ${{ inputs.template }}
     - ${{ inputs.config }}
 
 branding:
-  icon: 'git-commit'
-  color: 'green'
+  icon: "git-commit"
+  color: "green"

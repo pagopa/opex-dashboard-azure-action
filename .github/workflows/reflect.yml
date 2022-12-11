@@ -1,6 +1,9 @@
 name: Reflection
 
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   reflect:
@@ -16,6 +19,8 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
+      - name: Show current user UID and GID
+        run: id
       - name: Run current action
         uses: ./
         with:
@@ -25,22 +30,25 @@ jobs:
         uses: hashicorp/setup-terraform@v2
       - name: Apply
         run: |
+          echo "Current workdir:"
           ls -la azure-dashboard
-          sed -i "s/$/MySubscription/g"                 azure-dashboard/env/dev/backend.ini
-          sed -i "s/resource_group_name.*/& myrg/g"     azure-dashboard/env/dev/backend.tfvars
-          sed -i "s/storage_group_name.*/& mystorage/g" azure-dashboard/env/dev/backend.tfvars
-          sed -i "s/container_name.*/& mycontainer/g"   azure-dashboard/env/dev/backend.tfvars
-          sed -i "s/key.*/& mykey/g"                    azure-dashboard/env/dev/backend.tfvars
-          sed -i "s/prefix.*/& pagopa/g"                azure-dashboard/env/dev/terraform.tfvars
-          sed -i "s/env_short.*/& d/g"                  azure-dashboard/env/dev/terraform.tfvars
+          echo "--------------------"
+          sed -i "s/$/MySubscription/g"                   azure-dashboard/env/dev/backend.ini
+          sed -i "s/resource_group_name.*/& myrg/g"       azure-dashboard/env/dev/backend.tfvars
+          sed -i "s/storage_account_name.*/& mystorage/g" azure-dashboard/env/dev/backend.tfvars
+          sed -i "s/container_name.*/& mycontainer/g"     azure-dashboard/env/dev/backend.tfvars
+          sed -i "s/key.*/& mykey/g"                      azure-dashboard/env/dev/backend.tfvars
+          sed -i "s/prefix.*/& pagopa/g"                  azure-dashboard/env/dev/terraform.tfvars
+          sed -i "s/env_short.*/& d/g"                    azure-dashboard/env/dev/terraform.tfvars
           # ./terraform.sh init dev
           # ./terraform.sh apply dev -auto-approve
       - name: List all current files
         run: |
-          pwd
+          echo "Current path: $(pwd)"
+          echo "Current tree:"
           ls -R
-          cat \
-            azure-dashboard/env/dev/backend.ini
-            azure-dashboard/env/dev/backend.tfvars
+          echo "--------------------"
+          tail -n +1 \
+            azure-dashboard/env/dev/backend.ini \
+            azure-dashboard/env/dev/backend.tfvars \
             azure-dashboard/env/dev/terraform.tfvars
-

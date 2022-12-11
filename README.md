@@ -26,3 +26,9 @@ with:
 ```
 
 See a [complete example](.github/workflows/reflect.yml) in this repository.
+
+## Features that may be useful for this project
+
+- [Build args support in Docker container actions](https://github.com/orgs/community/discussions/25241)
+- [Docker actions create files and directories with root:root ownership, breaking later steps](https://github.com/actions/runner/issues/1282)
+- [Running jobs in a container](https://docs.github.com/en/actions/using-jobs/running-jobs-in-a-container)
