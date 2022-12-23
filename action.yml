@@ -11,9 +11,6 @@ inputs:
   subscription-id:
     description: "Azure subscription-id"
     required: true
-  subscription-name:
-    description: "Azure subscription-name"
-    required: true
   config:
     description: "A yaml file with all params to create the template"
     required: true
@@ -23,7 +20,7 @@ inputs:
   environment:
     description: "Environment"
     required: true
-  version:
+  docker-version:
     description: "docker version"
     required: true
   template-dir:
@@ -36,11 +33,11 @@ runs:
 
   steps:
 
-     # this action create a folder named /azure-dashboard
+    # this action create a folder named /azure-dashboard
     - name: Run opex dashbaord
       shell: bash
       run: |
-        docker run test ${{ inputs.template-dir }} ${{ inputs.config }}
+        docker run ghcr.io/pagopa/opex-dashboard-azure-action@${{ inputs.docker-version }} ${{ inputs.template-dir }} ${{ inputs.config }}
 
     # we need to set env variables in the folder /azure-dashboard
     - name: Copy Environments
