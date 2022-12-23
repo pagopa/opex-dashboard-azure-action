@@ -37,7 +37,6 @@ runs:
     - name: Run opex dashbaord
       shell: bash
       run: |
-        ls -la
         docker run \
           --workdir /github/workspace --rm \
           -v $(pwd):"/github/workspace" \
