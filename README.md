@@ -1,4 +1,4 @@
-# OpEx Dashboard action
+# OpEx Dashboard Azure action
 
 This action generate a template with [OpEx Dashboard tool](https://github.com/pagopa/opex-dashboard).
 
