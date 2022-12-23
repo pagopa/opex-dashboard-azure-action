@@ -37,7 +37,11 @@ runs:
     - name: Run opex dashbaord
       shell: bash
       run: |
-        docker run ghcr.io/pagopa/opex-dashboard-azure-action@${{ inputs.docker-version }} ${{ inputs.template-dir }} ${{ inputs.config }}
+        ls -la
+        docker run \
+          --workdir /github/workspace --rm \
+          -v $(pwd):"/github/workspace" \
+          ghcr.io/pagopa/opex-dashboard-azure-action@${{ inputs.docker-version }} ${{ inputs.template-dir }} ${{ inputs.config }}
 
     # we need to set env variables in the folder /azure-dashboard
     - name: Copy Environments
