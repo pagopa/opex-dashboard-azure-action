@@ -27,6 +27,10 @@ inputs:
     description: "Temp directory"
     required: true
     default: azure-dashboard
+  terraform-version:
+    description: "Override terraform version"
+    required: true
+    default: "1.3.6"
 
 runs:
   using: "composite"
@@ -48,18 +52,12 @@ runs:
       run: |
         cp -R .opex/${{ inputs.api-name }}/env ./${{ inputs.template-dir }}
 
-    - name: Read terraform version
-      id: read-version
-      shell: bash
-      run: |
-        echo "TERRAFORM_VERSION=`cat .terraform-version`" >> $GITHUB_ENV
-
     - name: Setup Terraform
       id: setup_terraform
       # from https://github.com/hashicorp/setup-terraform/commits/main
       uses: hashicorp/setup-terraform@8feba2b913ea459066180f9cb177f58a881cf146
       with:
-        terraform_version: ${{ env.TERRAFORM_VERSION }}
+        terraform_version: ${{ inputs.terraform-version }}
 
     - name: Login
       id: login
