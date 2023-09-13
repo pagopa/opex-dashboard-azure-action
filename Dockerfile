@@ -3,7 +3,7 @@ FROM python:3.11.2-alpine3.17@sha256:1c66f5282876229c87851cde3a1c7eb8939f212cdf3
 
 ARG user=runner
 ARG uid=1001
-ARG version=v1.8.0
+ARG version=v1.8.1
 
 ENV PATH="/home/${user}/.local/bin:${PATH}"
 
