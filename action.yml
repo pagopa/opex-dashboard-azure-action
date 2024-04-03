@@ -62,7 +62,7 @@ runs:
     - name: Login
       id: login
       # from https://github.com/Azure/login/commits/master
-      uses: azure/login@92a5484dfaf04ca78a94597f4f19fea633851fa2
+      uses: azure/login@e9468bad0a1e2a5863b25f77ea9b6ce0d19f5e41
       with:
         client-id: ${{ inputs.client-id }}
         tenant-id: ${{ inputs.tenant-id }}
