@@ -55,7 +55,7 @@ runs:
     - name: Setup Terraform
       id: setup_terraform
       # from https://github.com/hashicorp/setup-terraform/commits/main
-      uses: hashicorp/setup-terraform@8feba2b913ea459066180f9cb177f58a881cf146
+      uses: hashicorp/setup-terraform@a75f1a3ccea3c602b976c7c8c15b0c200cf101d0
       with:
         terraform_version: ${{ inputs.terraform-version }}
 
